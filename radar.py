@@ -345,7 +345,7 @@ def wochen_intro(items: list[dict]) -> str:
                  "was": i["was"], "berryroad": i["berryroad"]} for i in items]
         resp = client.messages.create(
             model=MODEL_DIGEST,
-            max_tokens=900,
+            max_tokens=2000,
             system=("Du bist der Markt-Scout von Berryroad, einem unabhängigen Planungsbüro für Automatisierung "
                     "und Physical AI für Mittelständler in Bayern und Österreich. Schreibe auf Deutsch, direkt, "
                     "kurze Sätze, keine Gedankenstriche, kein Hype. Nur auf Basis der übergebenen Einträge.\n\n"
