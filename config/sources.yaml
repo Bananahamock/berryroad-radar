@@ -1,0 +1,99 @@
+# Quellen für den Berryroad Radar
+# Typen:
+#   arxiv  -> arXiv-API, "query" in arXiv-Suchsyntax
+#   rss    -> beliebiger RSS/Atom-Feed, "url"
+#   gnews  -> Google-News-Suche als Feed, "query" (site:... funktioniert)
+# "rubrik" ist nur ein Hinweis. Die endgültige Zuordnung macht die Bewertung.
+# Eine Quelle, die nicht erreichbar ist, wird übersprungen und im Digest unter "Quellen-Status" gemeldet.
+
+einstellungen:
+  max_pro_quelle: 25        # maximal so viele neue Einträge je Quelle und Lauf
+  max_alter_tage: 10        # ältere Einträge werden ignoriert
+  alarm_ab_score: 9         # ab diesem Score kommt sofort eine Mail
+  digest_ab_score: 6        # ab diesem Score kommt ein Eintrag in den Wochen-Digest
+  digest_max_eintraege: 25
+
+quellen:
+  # ---------- FORSCHUNG ----------
+  - name: arXiv Robotik in der Fertigung
+    typ: arxiv
+    rubrik: forschung
+    query: 'cat:cs.RO AND (abs:manufacturing OR abs:industrial OR abs:assembly OR abs:"bin picking" OR abs:factory)'
+  - name: arXiv Industrial AI
+    typ: arxiv
+    rubrik: forschung
+    query: '(cat:cs.AI OR cat:cs.LG OR cat:eess.SY) AND (abs:"smart manufacturing" OR abs:"production planning" OR abs:"factory layout" OR abs:"digital twin")'
+  - name: arXiv Robot Foundation Models
+    typ: arxiv
+    rubrik: forschung
+    query: 'cat:cs.RO AND (abs:"foundation model" OR abs:"vision-language-action" OR abs:humanoid) AND (abs:industrial OR abs:manipulation)'
+  - name: Fraunhofer Robotik und Produktion
+    typ: gnews
+    rubrik: forschung
+    query: 'site:fraunhofer.de (Robotik OR Automatisierung OR Produktion OR KI)'
+  - name: Forschung DACH (TUM, JKU, Profactor, KIT)
+    typ: gnews
+    rubrik: forschung
+    query: '(TUM OR "JKU Linz" OR Profactor OR KIT OR "RWTH Aachen") Robotik Produktion KI'
+
+  # ---------- START-UPS ----------
+  - name: The Robot Report
+    typ: rss
+    rubrik: startups
+    url: https://www.therobotreport.com/feed/
+  - name: TechCrunch Robotics
+    typ: rss
+    rubrik: startups
+    url: https://techcrunch.com/category/robotics/feed/
+  - name: IEEE Spectrum Robotics
+    typ: rss
+    rubrik: startups
+    url: https://spectrum.ieee.org/feeds/topic/robotics.rss
+  - name: Start-up Finanzierungen Robotik/Physical AI
+    typ: gnews
+    rubrik: startups
+    query: '(robotics OR "physical AI" OR "industrial AI") startup raises manufacturing'
+  - name: Start-ups DACH Automatisierung
+    typ: gnews
+    rubrik: startups
+    query: 'Startup Robotik Finanzierungsrunde Fertigung Deutschland OR Österreich'
+
+  # ---------- BERATUNGEN ----------
+  - name: McKinsey Operations
+    typ: gnews
+    rubrik: beratungen
+    query: 'site:mckinsey.com (manufacturing OR automation OR "industrial AI" OR robotics)'
+  - name: BCG Operations
+    typ: gnews
+    rubrik: beratungen
+    query: 'site:bcg.com (manufacturing OR automation OR robotics OR "AI in operations")'
+  - name: Roland Berger Operations
+    typ: gnews
+    rubrik: beratungen
+    query: 'site:rolandberger.com (manufacturing OR automation OR robotics OR AI)'
+  - name: Deloitte und Accenture Smart Factory
+    typ: gnews
+    rubrik: beratungen
+    query: '(Deloitte OR Accenture) ("smart factory" OR "industrial AI" OR "physical AI" OR robotics)'
+  - name: Porsche Consulting, MHP, UNITY
+    typ: gnews
+    rubrik: beratungen
+    query: '("Porsche Consulting" OR MHP OR "UNITY AG") (Produktion OR Fabrik OR KI OR Automatisierung)'
+
+  # ---------- MARKT, REGULIERUNG, FÖRDERUNG (DACH) ----------
+  - name: Maschinenverordnung und AI Act
+    typ: gnews
+    rubrik: markt
+    query: '"Maschinenverordnung" OR "2023/1230" KI Maschinen'
+  - name: Förderungen Österreich
+    typ: gnews
+    rubrik: markt
+    query: '(FFG OR "aws" OR "Austria Wirtschaftsservice") Förderung (Automatisierung OR Digitalisierung OR KI) Produktion'
+  - name: Automatisierung Mittelstand DACH
+    typ: gnews
+    rubrik: markt
+    query: 'Mittelstand Automatisierung Robotik Fachkräftemangel Fertigung'
+  - name: Industrie Oberösterreich und Bayern
+    typ: gnews
+    rubrik: markt
+    query: '(Oberösterreich OR Bayern) Fertigung Automatisierung Investition Werk'
