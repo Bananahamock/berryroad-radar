@@ -384,24 +384,53 @@ def sende_mail(betreff: str, html_body: str, text_body: str) -> None:
     if not host:
         print("Kein SMTP_HOST gesetzt, Mail übersprungen.")
         return
-    port = int(os.getenv("SMTP_PORT", "587"))
-    user, pw = os.getenv("SMTP_USER"), os.getenv("SMTP_PASS")
-    an = os.getenv("MAIL_TO")
-    von = os.getenv("MAIL_FROM") or user
+    host = host.strip()
+    port_txt = (os.getenv("SMTP_PORT") or "").strip()
+    port = int(port_txt) if port_txt.isdigit() else 587
+    user = (os.getenv("SMTP_USER") or "").strip()
+    pw = (os.getenv("SMTP_PASS") or "").replace(" ", "").strip()  # Google zeigt App-Passwörter mit Leerzeichen
+    an = (os.getenv("MAIL_TO") or "").strip()
+    von = (os.getenv("MAIL_FROM") or "").strip() or user
+    fehlend = [n for n, v in (("SMTP_USER", user), ("SMTP_PASS", pw), ("MAIL_TO", an)) if not v]
+    if fehlend:
+        raise MailFehler("Secret fehlt oder ist leer: " + ", ".join(fehlend))
     msg = MIMEMultipart("alternative")
     msg["Subject"], msg["From"], msg["To"] = betreff, von, an
     msg.attach(MIMEText(text_body, "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))
-    if port == 465:
-        with smtplib.SMTP_SSL(host, port, timeout=30) as s:
-            s.login(user, pw)
-            s.sendmail(von, [a.strip() for a in an.split(",")], msg.as_string())
-    else:
-        with smtplib.SMTP(host, port, timeout=30) as s:
-            s.starttls()
-            s.login(user, pw)
-            s.sendmail(von, [a.strip() for a in an.split(",")], msg.as_string())
+    empfaenger = [a.strip() for a in an.split(",") if a.strip()]
+    try:
+        if port == 465:
+            with smtplib.SMTP_SSL(host, port, timeout=30) as s:
+                s.login(user, pw)
+                s.sendmail(von, empfaenger, msg.as_string())
+        else:
+            with smtplib.SMTP(host, port, timeout=30) as s:
+                s.starttls()
+                s.login(user, pw)
+                s.sendmail(von, empfaenger, msg.as_string())
+    except smtplib.SMTPAuthenticationError as ex:
+        raise MailFehler(f"Login bei {host} abgelehnt. SMTP_USER muss die volle Gmail-Adresse sein, "
+                         f"SMTP_PASS das App-Passwort. Antwort: {ex.smtp_code} {ex.smtp_error[:120]!r}")
+    except (OSError, smtplib.SMTPException) as ex:
+        raise MailFehler(f"Versand über {host}:{port} fehlgeschlagen: {type(ex).__name__}: {ex}")
     print(f"Mail gesendet: {betreff}")
+
+
+class MailFehler(Exception):
+    pass
+
+
+MAIL_FEHLER: list[str] = []
+
+
+def sende_mail_sicher(betreff: str, html_body: str, text_body: str) -> None:
+    """Mailfehler dürfen die gespeicherten Ergebnisse nicht verhindern."""
+    try:
+        sende_mail(betreff, html_body, text_body)
+    except MailFehler as ex:
+        print(f"::error title=Mailversand::{ex}")  # erscheint in GitHub unter Annotations
+        MAIL_FEHLER.append(str(ex))
 
 
 # ----------------------------------------------------------------- Läufe
@@ -422,7 +451,7 @@ def lauf_daily(items: list[dict] | None = None, status: dict | None = None) -> N
     if top:
         koerper = "".join(html_eintrag(i) for i in top)
         intro = "<p>Diese Treffer liegen über deiner Alarm-Schwelle und sollten nicht bis Montag warten.</p>"
-        sende_mail(f"Berryroad Radar: {len(top)} Top-Treffer",
+        sende_mail_sicher(f"Berryroad Radar: {len(top)} Top-Treffer",
                    html_rahmen("Radar-Alarm", intro, koerper),
                    "\n".join(md_eintrag(i) for i in top))
 
@@ -467,7 +496,7 @@ def lauf_digest() -> Path:
     pfad.write_text("\n".join(md), encoding="utf-8")
     html_body = html_rahmen(titel, intro_html, koerper, st_html)
     (DIGESTS / "letzter-digest.html").write_text(html_body, encoding="utf-8")
-    sende_mail(titel, html_body, "\n".join(md))
+    sende_mail_sicher(titel, html_body, "\n".join(md))
     print(f"Digest geschrieben: {pfad}")
     return pfad
 
@@ -507,6 +536,8 @@ def main() -> None:
     else:
         print(__doc__)
         sys.exit(1)
+    if MAIL_FEHLER:
+        sys.exit(2)  # Lauf rot markieren, Ergebnisse sind trotzdem gespeichert
 
 
 if __name__ == "__main__":

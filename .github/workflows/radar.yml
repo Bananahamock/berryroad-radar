@@ -23,9 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -44,6 +44,8 @@ jobs:
           fi
 
       - name: Radar ausführen
+        id: lauf
+        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
@@ -55,9 +57,16 @@ jobs:
         run: python radar.py ${{ steps.modus.outputs.modus }}
 
       - name: Ergebnisse ins Repo speichern
+        if: always()
         run: |
           git config user.name "berryroad-radar"
           git config user.email "radar@users.noreply.github.com"
           git add state data digests || true
           git diff --cached --quiet || git commit -m "Radar ${{ steps.modus.outputs.modus }} $(date -u +%F)"
           git push
+
+      - name: Status melden
+        if: steps.lauf.outcome == 'failure'
+        run: |
+          echo "::error::Radar-Lauf fehlgeschlagen. Details oben unter 'Radar ausführen' bzw. in den Annotations."
+          exit 1
