@@ -1,97 +1,97 @@
 {
  "arXiv Robotik in der Fertigung": {
-  "ok": true,
-  "neu": 0,
-  "stand": "2026-11-15"
+  "ok": false,
+  "fehler": "429 Client Error: Too Many Requests for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.RO+AND+%28abs%3Amanufacturing+OR+abs%3Aindustrial+OR+abs%3",
+  "stand": "2026-11-16"
  },
  "arXiv Industrial AI": {
-  "ok": true,
-  "neu": 0,
-  "stand": "2026-11-15"
+  "ok": false,
+  "fehler": "HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30)",
+  "stand": "2026-11-16"
  },
  "arXiv Robot Foundation Models": {
   "ok": true,
-  "neu": 0,
-  "stand": "2026-11-15"
+  "neu": 2,
+  "stand": "2026-11-16"
  },
  "Fraunhofer Robotik und Produktion": {
   "ok": true,
-  "neu": 2,
-  "stand": "2026-11-15"
+  "neu": 0,
+  "stand": "2026-11-16"
  },
  "Forschung DACH (TUM, JKU, Profactor, KIT)": {
   "ok": true,
-  "neu": 1,
-  "stand": "2026-11-15"
+  "neu": 3,
+  "stand": "2026-11-16"
  },
  "The Robot Report": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "TechCrunch Robotics": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "IEEE Spectrum Robotics": {
   "ok": true,
-  "neu": 0,
-  "stand": "2026-11-15"
+  "neu": 1,
+  "stand": "2026-11-16"
  },
  "Start-up Finanzierungen Robotik/Physical AI": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "Start-ups DACH Automatisierung": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "McKinsey Operations": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "BCG Operations": {
   "ok": true,
-  "neu": 0,
-  "stand": "2026-11-15"
+  "neu": 1,
+  "stand": "2026-11-16"
  },
  "Roland Berger Operations": {
   "ok": true,
-  "neu": 5,
-  "stand": "2026-11-15"
+  "neu": 0,
+  "stand": "2026-11-16"
  },
  "Deloitte und Accenture Smart Factory": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "Porsche Consulting, MHP, UNITY": {
   "ok": true,
-  "neu": 1,
-  "stand": "2026-11-15"
+  "neu": 0,
+  "stand": "2026-11-16"
  },
  "Maschinenverordnung und AI Act": {
   "ok": true,
-  "neu": 0,
-  "stand": "2026-11-15"
+  "neu": 1,
+  "stand": "2026-11-16"
  },
  "Förderungen Österreich": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "Automatisierung Mittelstand DACH": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  },
  "Industrie Oberösterreich und Bayern": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-15"
+  "stand": "2026-11-16"
  }
 }
