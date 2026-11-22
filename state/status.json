@@ -2,96 +2,96 @@
  "arXiv Robotik in der Fertigung": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "arXiv Industrial AI": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "arXiv Robot Foundation Models": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "Fraunhofer Robotik und Produktion": {
   "ok": true,
-  "neu": 1,
-  "stand": "2026-11-21"
+  "neu": 0,
+  "stand": "2026-11-22"
  },
  "Forschung DACH (TUM, JKU, Profactor, KIT)": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "The Robot Report": {
   "ok": true,
-  "neu": 2,
-  "stand": "2026-11-21"
+  "neu": 1,
+  "stand": "2026-11-22"
  },
  "TechCrunch Robotics": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "IEEE Spectrum Robotics": {
   "ok": true,
-  "neu": 1,
-  "stand": "2026-11-21"
+  "neu": 0,
+  "stand": "2026-11-22"
  },
  "Start-up Finanzierungen Robotik/Physical AI": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "Start-ups DACH Automatisierung": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "McKinsey Operations": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "BCG Operations": {
   "ok": true,
-  "neu": 1,
-  "stand": "2026-11-21"
+  "neu": 0,
+  "stand": "2026-11-22"
  },
  "Roland Berger Operations": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "Deloitte und Accenture Smart Factory": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "Porsche Consulting, MHP, UNITY": {
   "ok": true,
-  "neu": 2,
-  "stand": "2026-11-21"
+  "neu": 1,
+  "stand": "2026-11-22"
  },
  "Maschinenverordnung und AI Act": {
   "ok": true,
-  "neu": 0,
-  "stand": "2026-11-21"
+  "neu": 1,
+  "stand": "2026-11-22"
  },
  "Förderungen Österreich": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "Automatisierung Mittelstand DACH": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  },
  "Industrie Oberösterreich und Bayern": {
   "ok": true,
   "neu": 0,
-  "stand": "2026-11-21"
+  "stand": "2026-11-22"
  }
 }
